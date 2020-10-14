@@ -10,6 +10,7 @@ function handleFileSelect(evt) {
     complete: function(results) {
       console.log("Complete")
       const fileData = results;
+      console.log(fileData)
      //Create Table Header, dynamically
         //Get Labels
           const tHeader = fileData.data[0]
@@ -32,7 +33,6 @@ function handleFileSelect(evt) {
     }
    })
   };
-  
 $(document).ready(function(){
   console.log("Hey")
   $("#csv-file").change(handleFileSelect);

@@ -1,51 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <title>URI Param Generator</title>
-</head>
-<body>
-
-  <div class="container text-center col-md-6 col-sm-6" style="margin-top:2em ;">
-    <h1>URI Param Generator</h1>
-    <form >
-      <div class=" form-group">
-        <label>Site URL</label>
-          <input type="text"class="form-control" id="site-url" >
+<htm lang="en">
+<html>
+  <head>
+      <title>URL Param</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <link rel="stylesheet" href="C:\Users\ch181510\Desktop\git\js.git\js\mysite\css/style.css">
+      <script src="C:\Users\ch181510\Desktop\git\js.git\js\mysite\js/content.js"></script>
+      <link rel="stylesheet" href="C:\Users\ch181510\Desktop\git\js.git\js\mysite\css/style.css">
+  </head>
+  <body class="w3-center w3-card-2">
+    <button class="tablink" onclick="openPage('Home', this, 'red')" id="defaultOpen">Home</button>
+    <button class="tablink" onclick="openPage('CSV', this, 'green')" >CSV</button>
+    <button class="tablink" onclick="openPage('qrGen', this, 'blue')">QR Gen</button>
+    <div id="Home" class="tabcontent">
+      <h3>Home</h3>
+      <p>Home is where the heart is..</p>
+    </div>
+    <div id="CSV" class="tabcontent">
+      <h3 class="w3-jumbo">CSV Parser</h3>
+      <div id="iForm" class="w3-padding-24 w3-container w3-center">
+        <form>
+          <input class="w3-col s6" type="file" id="csv-file">
+          <input oninput="w3.filterHTML('#dTable', '.item', this.value)"class="w3-input w3-col s6" type="text"id="userInput" placeholder="Seach here">
+       </form>
       </div>
-      <div class=" form-group">
-        <label>URI Param</label>
-          <input type="text"class="form-control" id="param-url" >
-      </div>
-      <div class=" form-group">
-        <label>Param Value</label>
-          <input type="text"class="form-control" id="param-value" >
-      </div>
-      <div class="form-group">
-        <label>Upload File</label>
-        <input type="file" class="form-control-file" name="" id="" placeholder="" aria-describedby="fileHelpId">
-        <small id="fileHelpId" class="form-text text-muted">You can upload CSV File</small>
-      </div>
-      <div class="col-auto">
-        <button type="button" class="btn btn-primary" id="sub-btn">Submit</button>
-      </div>
-    </form>
-    <section>
-      <a href="#" class="list-group-item list-group-item-action">
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1">List group item heading</h5>
+      <div id="extTable" class="w3-container w3-padding-24 w3-centered w3-margin">
+        <table id="dTable" class="w3-table w3-card-4 w3-large">
+          <thead id="dHead" class="w3-teal">
+              <tr id="headRow"></tr>
+          </thead>
+            <tbody id=dbody></tbody>
+          </table>
         </div>
-        <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-        <small class="text-muted">Donec id elit non mi porta.</small>
-      </a>
-    </section>
+    </div>
   </div>
- 
-
-  <script src="./main.js"></script>
-
+    <div id="qrGen" class="tabcontent">
+      <h3>QR Gen</h3>
+      <div class="w3-container w3-padding-24">
+        <form>
+            <input type="text"class="w3-input" id="siteUrl" placeholder="Site URL" value="https://mybch.net/tools/parking-vouchers/">
+            <input type="text"class="w3-input" id="paramKey" placeholder="Param Key"value="bch_park_tickets">
+            <input type="text"class="w3-input" id="paramValue" placeholder="Param Value" value="123456">
+          <input type="file" id="csv-file" class="w3-input">
+          <button type="button" id="subBtn" class="w3-input w3-large w3-dark-gray w3-button">Generate</button>
+      </form>
+    </div>
+    <div class="w3-container w3-padding-24 w3-row-padding" id="output">
+    </div>
+  </div>
+    
+  <script src="https://www.w3schools.com/lib/w3.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- <script src="C:\Users\ch181510\Desktop\git\js.git\js\mysite\js/csv-parser.js"></script> -->
+  <script src="C:\Users\ch181510\Desktop\git\js.git\js\mysite\js/qrEncode.js"></script>
+  <script src="C:\Users\ch181510\Desktop\git\js.git\js\mysite\js/pp.min.js"></script>
+  <script src="C:\Users\ch181510\Desktop\git\js.git\js\mysite\js/csv-parser.js"></script>
 </body>
-</html>
+</html> 

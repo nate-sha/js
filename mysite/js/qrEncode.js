@@ -1,20 +1,36 @@
 /*This script takes in a parking voucher number, generate a URL parameter and a QR code for that url*/
-const subBTN = document.getElementById('sub-btn')    
-const siteUrl = "https://mybch.net/tools/parking-vouchers/"
-const param = "bch_park_tickets";
-const vouchers = [123456, 654321, 987654, 456789]
+//Define Variables
+let siteUrl, qKey, qValue, qUrl, qArray = {} ;
 const apiCall = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data="
-//2. Generate & encode a url
-const voucherUrlArray = vouchers.map(vNum =>
-{return  encodeURI(`${apiCall}${siteUrl}?${param}=${vNum}`)
-});
-console.log(voucherUrlArray)
-console.log(voucherUrlArray[0])
 
-
-//3. Send an API request to get the QR-Code
-for (i =0; i <= vouchers.length; i++) {
- let lastqrImg = $("body").find("section:last").append($('<p>'))
- appQr = lastqrImg.append($('<img class="container">').attr("src",voucherUrlArray[i]))
- }
+$(document).ready(function() {
+  $("#subBtn").click( x => {
+    $("#output").empty(); 
+      siteUrl = $("#siteUrl").val()
+      qKey = $("#paramKey").val()
+      qValue = $("#paramValue").val().split(",")
   
+    $("#csv-file").change(handleFileSelect);
+      function handleFileSelect(evt) {
+      console.log("Loading")
+      var file = evt.target.files[0];
+      Papa.parse(file, {
+        header: true,
+        dynamicTyping: true,
+        complete: function(results) {
+          console.log("Complete")
+          qValue = results;
+          console.log(qrValue)
+      }})
+    }
+    qUrl = qValue.map(v =>{
+      return  encodeURI(`${apiCall}${siteUrl}${qKey}=${v}`)
+    })
+    console.log(qUrl)
+    newArr = qUrl.map(x => {
+      const lastQrImg = $("#output").append($('<block class="w3-center w3-col l4 m3 s2">'))
+      lastQrImg.append($('<img class="w3-padding">').attr("src",x))
+       })
+  })
+})
+
